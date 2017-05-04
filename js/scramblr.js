@@ -15,6 +15,8 @@ function Main() {
 
     this.main = function () {
 
+        addWatermark();
+
         var self = this;
 
         logger.info("Scramblr " + this.version + " loaded");
@@ -38,12 +40,12 @@ function Main() {
                     self.spadom.requestDocumentModify(function () {
 
                         self.spadom.lookupElement("i:eow-title", function (element) {
-                            element.innerHTML = "Hello, world!";
+                            element.innerHTML = "Title hidden";
                         });
 
                         self.spadom.lookupElement("c:title", function (element) {
                             for (var i = 0; i < element.length; i++) {
-                                element[i].innerHTML = "Hello, world!";
+                                element[i].innerHTML = "Title hidden"
                             }
                         });
 
@@ -82,6 +84,18 @@ function Main() {
                 });
 
             });
+        }
+
+    };
+
+    function addWatermark() {
+
+        var marks = document.getElementsByClassName("content-region");
+        if (marks != undefined) {
+            for (var i = 0; i < marks.length; i++) {
+                marks[i].innerHTML = "Scramblr";
+                marks[i].style.color = "red";
+            }
         }
 
     }
