@@ -26,14 +26,14 @@ function Main() {
             switch (self.scraper.getCurrentPage()) {
 
                 case PAGES.HOME:
-                    nukeTitles();
+                    self.nukeTitles();
                     break;
                 case PAGES.USER:
                 case PAGES.CHANNEL:
-                    nukeTitles();
+                    self.nukeTitles();
                     break;
                 case PAGES.SEARCH:
-                    nukeTitles();
+                    self.nukeTitles();
                     break;
                 case PAGES.VIDEO:
 
@@ -73,19 +73,20 @@ function Main() {
 
         });
 
-        nukeTitles = function () {
 
-            self.spadom.requestDocumentModify(function () {
+    };
 
-                self.spadom.lookupElement("c:yt-lockup-title", function (elements) {
-                    for (var i = 0; i < elements.length; i++) {
-                        elements[i].children[0].innerHTML = "Hello, world!";
-                    }
-                });
+    this.nukeTitles = function () {
 
+        self.spadom.requestDocumentModify(function () {
+
+            self.spadom.lookupElement("c:yt-lockup-title", function (elements) {
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].children[0].innerHTML = "Hello, world!";
+                }
             });
-        }
 
+        });
     };
 
     function addWatermark() {
