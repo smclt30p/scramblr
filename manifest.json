@@ -1,27 +1,23 @@
 {
   "manifest_version": 2,
-  "name": "Knife Filter",
+  "name": "YouTube Scramblr",
   "version": "1.0.0",
-  "description": "Remove hot stuff from suggestions on YouTube",
+  "description": "Scramble YouTube titles and descriptions to avoid YouTube's filters",
   "browser_action" :
   {
     "default_icon" : "images/icon-19x19.png",
-    "default_title" : "Knife Filter"
+    "default_title" : "YouTube Scramblr"
   },
   "permissions": [
-    "tabs",
-    "storage"
+    "tabs"
 	],
   "content_scripts": [
     { 
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "http://www.youtube.com/*",
+        "https://www.youtube.com/*"
       ],
-      "exclude_globs": [ 
-        "*://*github.com*"
-      ],
-      "js": ["js/jquery-3.1.1.min.js", "js/filter.js"],
+      "js": ["js/scramblr.js"],
       "run_at": "document_idle",
       "all_frames": false
     }
