@@ -147,12 +147,12 @@ class YouTubeDOM {
         return YouTubeDOM.PAGE_UNKNOWN;
     }
 
-    public inject(): void {
+    public injectUserInterface(): void {
 
         try {
 
             this.injectMenuButton();
-            this.addWatermark();
+            this.injectWatermark();
 
         } catch (e) {
             throw e;
@@ -160,7 +160,7 @@ class YouTubeDOM {
 
     };
 
-    private addWatermark(): void {
+    private injectWatermark(): void {
 
         const marks = document.getElementsByClassName("content-region");
 
@@ -175,17 +175,23 @@ class YouTubeDOM {
     };
 
     private injectMenuButton(): void {
-        this.fetchLocalFile("html/settings-item.html", function (data) {
+
+        Utilities.fetchLocalFile("html/settings-item.html", function (data) {
 
             const html = document.createRange().createContextualFragment(data).firstChild;
+
             let spadom = DocumentManager.getInstance();
 
             spadom.lookupElement("c:guide-user-links", function (elements) {
 
                 if (elements.length == 0) {
-                    Logger.error("No menu found to inject option!");
-                    throw new YoutubeDOMException("No menu found to inject option!");
+                    Logger.error("No menu found to injectUserInterface option!");
+                    throw new YoutubeDOMException("No menu found to injectUserInterface option!");
                 }
+
+                html.addEventListener("click", () => {
+                    window.open(Browser.getCurrentBrowserAPI().getURIFromLocalFile("/html/settings/settings.html"));
+                });
 
                 elements[0].appendChild(html);
 
@@ -194,10 +200,15 @@ class YouTubeDOM {
         });
     };
 
-    private fetchLocalFile(path: string, callback: (data: string) => void) {
+
+
+}
+
+class Utilities {
+
+    public static fetchLocalFile(path: string, callback: (data: string) => void) {
 
         const url = Browser.getCurrentBrowserAPI().getURIFromLocalFile(path);
-
         const xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
         xhr.onreadystatechange = function (data) {

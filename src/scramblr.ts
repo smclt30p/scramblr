@@ -14,39 +14,38 @@ class Main {
         this.ytdom = new YouTubeDOM();
 
         try {
-            this.ytdom.inject();
+
+            this.ytdom.injectUserInterface();
+
+            this.spadom.observeContent(() => {
+
+                switch (this.ytdom.getCurrentPage()) {
+
+                    case YouTubeDOM.PAGE_HOME:
+                        Logger.verbose("On home page");
+                        break;
+                    case YouTubeDOM.PAGE_VIDEO:
+                        Logger.verbose("On video page");
+                        break;
+                    case YouTubeDOM.PAGE_USER:
+                    case YouTubeDOM.PAGE_CHANNEL:
+                        Logger.verbose("On user page");
+                        break;
+                    case YouTubeDOM.PAGE_SEARCH:
+                        Logger.verbose("On search page");
+                        break;
+                    case YouTubeDOM.PAGE_SUBSCRIPTIONS:
+                        Logger.verbose("On subscriptions page!");
+                        break;
+                    default:
+                        break;
+                }
+
+            });
+
         } catch (e) {
-            Logger.error("Error injecting interface to YouTube DOM: " + e.message);
-            return;
+            Logger.error("Unexpected error occurred: " + e.message);
         }
-
-
-        this.spadom.observeContent(() => {
-
-            switch (this.ytdom.getCurrentPage()) {
-
-                case YouTubeDOM.PAGE_HOME:
-                    Logger.verbose("On home page");
-                    break;
-                case YouTubeDOM.PAGE_VIDEO:
-                    Logger.verbose("On video page");
-                    break;
-                case YouTubeDOM.PAGE_USER:
-                case YouTubeDOM.PAGE_CHANNEL:
-                    Logger.verbose("On user page");
-                    break;
-                case YouTubeDOM.PAGE_SEARCH:
-                    Logger.verbose("On search page");
-                    break;
-                case YouTubeDOM.PAGE_SUBSCRIPTIONS:
-                    Logger.verbose("On subscriptions page!");
-                    break;
-                default:
-                    break;
-
-            }
-
-        });
 
     }
 }

@@ -3,32 +3,38 @@
   "name": "YouTube Scramblr",
   "version": "1.0.0",
   "description": "General purpose toolkit for YouTube",
-  "browser_action" :
-  {
-    "default_icon" : "images/icon-19x19.png",
-    "default_title" : "YouTube Scramblr"
+  "browser_action": {
+    "default_icon": "images/icon-19x19.png",
+    "default_title": "YouTube Scramblr"
   },
   "permissions": [
     "tabs"
-	],
+  ],
   "content_scripts": [
-    { 
+    {
       "matches": [
         "http://www.youtube.com/*",
         "https://www.youtube.com/*"
       ],
-      "js": ["js/build.js"],
+      "js": [
+        "js/build.js"
+      ],
       "run_at": "document_idle",
       "all_frames": false
     }
   ],
-  "icons" : {
-  	"16": "images/icon-16x16.png",
+  "icons": {
+    "16": "images/icon-16x16.png",
     "19": "images/icon-19x19.png",
     "48": "images/icon-48x48.png",
     "128": "images/icon-128x128.png",
     "130": "images/icon-130x130.png",
     "550": "images/icon-550x550.png"
-  } ,
-  "web_accessible_resources": ["/images/settings.png", "/images/settings-hover.png", "html/settings-item.html"]
+  },
+  "web_accessible_resources": [
+    "/images/settings.png",
+    "/images/settings-hover.png",
+    "/html/settings-item.html",
+    "/html/settings/settings.html"
+  ]
 }
