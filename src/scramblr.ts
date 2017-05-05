@@ -40,6 +40,7 @@ class Main {
                     break;
                 case YouTubeDOM.PAGE_SUBSCRIPTIONS:
                     Logger.verbose("On subscriptions page!");
+                    break;
                 default:
                     break;
 

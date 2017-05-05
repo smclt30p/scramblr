@@ -1,10 +1,5 @@
 /// <reference path="logger.ts"/>
-
-/**
- * For Google Chrome API's
- * TODO: Abstract browser stuff for other browsers
- */
-declare const chrome;
+/// <reference path="browser.ts"/>
 
 class DocumentManager {
 
@@ -201,7 +196,7 @@ class YouTubeDOM {
 
     private fetchLocalFile(path: string, callback: (data: string) => void) {
 
-        const url = chrome.extension.getURL(path);
+        const url = Browser.getCurrentBrowserAPI().getURIFromLocalFile(path);
 
         const xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
