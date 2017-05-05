@@ -46,7 +46,6 @@ class Main {
         } catch (e) {
             Logger.error("Unexpected error occurred: " + e.message);
         }
-
     }
 }
 

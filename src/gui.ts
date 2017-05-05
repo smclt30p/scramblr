@@ -152,24 +152,9 @@ class YouTubeDOM {
         try {
 
             this.injectMenuButton();
-            this.injectWatermark();
 
         } catch (e) {
             throw e;
-        }
-
-    };
-
-    private injectWatermark(): void {
-
-        const marks = document.getElementsByClassName("content-region");
-
-        if (marks != undefined) {
-            for (let i = 0; i < marks.length; i++) {
-                marks[i].innerHTML = "Scramblr";
-            }
-        } else {
-            Logger.error("Watermark area not found, skipping...");
         }
 
     };
