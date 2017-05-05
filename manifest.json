@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "YouTube Scramblr",
   "version": "1.0.0",
-  "description": "Scramble YouTube titles and descriptions to avoid YouTube's filters",
+  "description": "General purpose toolkit for YouTube",
   "browser_action" :
   {
     "default_icon" : "images/icon-19x19.png",
