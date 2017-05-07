@@ -1,11 +1,14 @@
 /// <reference path="Logger.ts"/>
 /// <reference path="DocumentManager.ts"/>
 ///<reference path="YoutubeDOM.ts"/>
+///<reference path="ModuleManager.ts"/>
 
 class Extension {
 
     private spadom: DocumentManager;
     private ytdom: YouTubeDOM;
+    private modulemanager: ModuleManager;
+    private modules: Module[];
 
     public main(): void {
 
@@ -13,33 +16,22 @@ class Extension {
 
         this.spadom = DocumentManager.getInstance();
         this.ytdom = new YouTubeDOM();
+        this.modulemanager = new ModuleManager();
+
+        this.modules = this.modulemanager.getLoadedModules();
 
         try {
 
             this.ytdom.injectUserInterface();
 
+            for (let i = 0; i < this.modules.length; i++) {
+                this.modules[i].init(this.spadom, this.ytdom.getCurrentPage());
+            }
+
             this.spadom.observeContent(() => {
 
-                switch (this.ytdom.getCurrentPage()) {
-
-                    case YouTubeDOM.PAGE_HOME:
-                        Logger.verbose("On home page");
-                        break;
-                    case YouTubeDOM.PAGE_VIDEO:
-                        Logger.verbose("On video page");
-                        break;
-                    case YouTubeDOM.PAGE_USER:
-                    case YouTubeDOM.PAGE_CHANNEL:
-                        Logger.verbose("On user page");
-                        break;
-                    case YouTubeDOM.PAGE_SEARCH:
-                        Logger.verbose("On search page");
-                        break;
-                    case YouTubeDOM.PAGE_SUBSCRIPTIONS:
-                        Logger.verbose("On subscriptions page!");
-                        break;
-                    default:
-                        break;
+                for (let i = 0; i < this.modules.length; i++) {
+                    this.modules[i].service(this.spadom, this.ytdom.getCurrentPage());
                 }
 
             });
