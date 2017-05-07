@@ -45,6 +45,12 @@ abstract class Module {
      * Use this method to modify the DOM when a dynamic event has occurred,
      * such as when a page gets switched or more suggestions are loaded.
      *
+     * NOTE: This gets called many times so be sure to not leak any memory here.
+     *
+     * IMPORTANT! IMPORTANT! IMPORTANT! WHEN MODIFYING THE DOM YOU MUST USE
+     * DocumentManager.requestDocumentModify(), OR ELSE THE WHOLE PAGE
+     * WILL FREEZE AND CRASH !!!
+     *
      * @param docmanager us for DOM modification
      * @param currentPage is to determine on what page the modification
      * occurred

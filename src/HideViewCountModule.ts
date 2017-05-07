@@ -14,14 +14,20 @@ class HideViewCountModule extends Module {
 
     init(docmanager: DocumentManager, currentPage: number) {
 
+        /* Don't init the module if it's disabled */
         if (this.readSettingsKey("enabled") == "false") {
             return;
         }
 
+        /* Create a style element and append it to the DOM
+         * so that we can use this class to override
+         * element class names to just be "hvc-hidden".
+         */
         let style = document.createElement("style");
         style.setAttribute("id", "hvc-hidden-style");
         style.innerHTML = ".hvc-hidden { display: none; }";
 
+        /* Just append once */
         if (document.getElementById("hvc-hidden-style") == null) {
             document.getElementsByTagName("body")[0].appendChild(style);
         }
@@ -32,18 +38,32 @@ class HideViewCountModule extends Module {
 
     service(docmanager: DocumentManager, currentPage: number) {
 
+        /* Don't service the module if it's disabled */
         if (this.readSettingsKey("enabled") == "false") {
             return;
         }
 
+        /* Determine the current page that the user is looking at */
         switch (currentPage) {
 
+            /* The user is viewing a video */
             case YouTubeDOM.PAGE_VIDEO:
+
+                /* Get all the view count elements */
 
                 let mainViewCount = document.getElementsByClassName("watch-view-count");
                 let suggestionViewCount = document.getElementsByClassName("view-count");
 
+                /* IMPORTANT! IMPORTANT! IMPORTANT! WHEN MODIFYING THE DOM YOU MUST USE
+                 * DocumentManager.requestDocumentModify(), OR ELSE THE WHOLE PAGE
+                 * WILL FREEZE AND CRASH !!!
+                 */
+
                 docmanager.requestDocumentModify(() => {
+
+                    /* Set the class to hvc-hidden so that all view elements
+                     * get display: none
+                     */
 
                     for (let i = 0; i < mainViewCount.length; i++) {
                         mainViewCount[i].setAttribute("class", "hvc-hidden");
@@ -57,12 +77,24 @@ class HideViewCountModule extends Module {
 
                 break;
 
+            /* The user is searching something/viewing the home page */
             case YouTubeDOM.PAGE_HOME:
             case YouTubeDOM.PAGE_SEARCH:
 
+                /* Get all the view count elements */
+                
                 let searchViewCount = document.getElementsByClassName("yt-lockup-meta-info");
 
+                /* IMPORTANT! IMPORTANT! IMPORTANT! WHEN MODIFYING THE DOM YOU MUST USE
+                 * DocumentManager.requestDocumentModify(), OR ELSE THE WHOLE PAGE
+                 * WILL FREEZE AND CRASH !!!
+                 */
+
                 docmanager.requestDocumentModify(() => {
+
+                    /* Set the class to hvc-hidden so that all view elements
+                     * get display: none
+                     */
 
                     for (let i = 0; i < searchViewCount.length; i++) {
                         searchViewCount[i].setAttribute("class", "hvc-hidden");
