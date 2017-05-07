@@ -88,7 +88,7 @@ class HideViewCountModule extends Module {
     getName(): string {
         return this.NAME;
     }
-    
+
     getUUID(): string {
         return this.UUID;
     }
