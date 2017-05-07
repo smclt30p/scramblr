@@ -65,13 +65,8 @@ class HideViewCountModule extends Module {
                      * get display: none
                      */
 
-                    for (let i = 0; i < mainViewCount.length; i++) {
-                        mainViewCount[i].setAttribute("class", "hvc-hidden");
-                    }
-
-                    for (let i = 0; i < suggestionViewCount.length; i++) {
-                        suggestionViewCount[i].setAttribute("class", "hvc-hidden");
-                    }
+                    HideViewCountModule.hideElements(mainViewCount);
+                    HideViewCountModule.hideElements(suggestionViewCount);
 
                 });
 
@@ -96,10 +91,21 @@ class HideViewCountModule extends Module {
                      * get display: none
                      */
 
-                    for (let i = 0; i < searchViewCount.length; i++) {
-                        searchViewCount[i].setAttribute("class", "hvc-hidden");
-                    }
+                    HideViewCountModule.hideElements(searchViewCount);
 
+                });
+
+                break;
+
+            case YouTubeDOM.PAGE_CHANNEL:
+            case YouTubeDOM.PAGE_USER:
+
+                let viewCount = document.getElementsByClassName("yt-lockup-meta-info");
+                let viewCount1 = document.getElementsByClassName("view-count");
+
+                docmanager.requestDocumentModify(() => {
+                    HideViewCountModule.hideElements(viewCount);
+                    HideViewCountModule.hideElements(viewCount1);
                 });
 
                 break;
@@ -108,6 +114,12 @@ class HideViewCountModule extends Module {
                 return;
         }
 
+    }
+
+    private static hideElements(elements: HTMLCollectionOf<Element>) : void {
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].setAttribute("class", "hvc-hidden");
+        }
     }
 
     destruct() {
