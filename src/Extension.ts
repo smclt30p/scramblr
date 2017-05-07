@@ -20,25 +20,31 @@ class Extension {
 
         this.modules = this.modulemanager.getLoadedModules();
 
-        try {
+        this.modulemanager.readAllModuleSettings(() => {
 
-            this.ytdom.injectUserInterface();
+            try {
 
-            for (let i = 0; i < this.modules.length; i++) {
-                this.modules[i].init(this.spadom, this.ytdom.getCurrentPage());
-            }
-
-            this.spadom.observeContent(() => {
+                this.ytdom.injectUserInterface();
 
                 for (let i = 0; i < this.modules.length; i++) {
-                    this.modules[i].service(this.spadom, this.ytdom.getCurrentPage());
+                    this.modules[i].init(this.spadom, this.ytdom.getCurrentPage());
                 }
 
-            });
+                this.spadom.observeContent(() => {
 
-        } catch (e) {
-            Logger.error("Unexpected error occurred: " + e.message);
-        }
+                    for (let i = 0; i < this.modules.length; i++) {
+                        this.modules[i].service(this.spadom, this.ytdom.getCurrentPage());
+                    }
+
+                });
+
+            } catch (e) {
+                Logger.error("Unexpected error occurred: " + e.message);
+            }
+
+        });
+
+
     }
 }
 

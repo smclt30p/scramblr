@@ -4,6 +4,7 @@
 class ModuleManager {
 
     private modules : Module[] = [];
+    private moduleCount : number = 0;
 
     constructor() {
 
@@ -15,4 +16,23 @@ class ModuleManager {
         return this.modules;
     }
 
+    readAllModuleSettings(runmain: () => void) {
+
+        let self = this;
+
+        for (let i = 0; i < this.modules.length; i++) {
+
+            this.modules[i].loadAllKeys(() => {
+
+                self.moduleCount++;
+
+                if (self.modules.length == self.moduleCount) {
+                    runmain();
+                }
+
+            });
+
+        }
+
+    }
 }

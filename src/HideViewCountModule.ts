@@ -2,9 +2,25 @@
 ///<reference path="YoutubeDOM.ts"/>
 ///<reference path="Logger.ts"/>
 
-class HideViewCountModule implements Module {
+class HideViewCountModule extends Module {
+
+
+    private NAME = "View Count Hider";
+    private UUID = "com.scramblr.hideviewcount";
+
+    private settings = [
+        { "type":"bool", "key":"enabled", "value":"true" }
+    ];
+
+    getUUID(): string {
+        return this.UUID;
+    }
 
     init(docmanager: DocumentManager, currentPage: number) {
+
+        if (this.readSettingsKey("enabled") == "false") {
+            return;
+        }
 
         let style = document.createElement("style");
         style.setAttribute("id", "hvc-hidden-style");
@@ -19,6 +35,10 @@ class HideViewCountModule implements Module {
     }
 
     service(docmanager: DocumentManager, currentPage: number) {
+
+        if (this.readSettingsKey("enabled") == "false") {
+            return;
+        }
 
         switch (currentPage) {
 
@@ -66,10 +86,11 @@ class HideViewCountModule implements Module {
     }
 
     getSettings() {
+        return this.settings;
     }
 
     getName(): string {
-        return "View Count Hider";
+        return this.NAME;
     }
 
 }

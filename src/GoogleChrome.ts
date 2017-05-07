@@ -15,7 +15,7 @@ class GoogleChrome implements BrowserAPI {
         chrome.storage.local.set(sett, function() {});
     }
 
-    readSetting(key: string, def: string, callback: (value: string) => void) {
+    readSetting(key: string, def: any, callback: (value: any) => void) {
 
         chrome.storage.local.get(key, (items: any) => {
             let item = items[key];
