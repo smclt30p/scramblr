@@ -1,0 +1,94 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+#wrapper {
+    display: flex;
+    height: 100%;
+}
+
+#sidebar {
+    height: 100%;
+    width: 300px;
+    border-right: 1px solid #e8e8e8;
+    overflow-y: scroll;
+}
+
+#main-container {
+    height: 100%;
+    width: 100%;
+    background: #f1f1f1;
+    overflow-y: scroll;
+}
+
+.logo {
+    height: 40px;    
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.logo img {
+    float: left;
+    max-height: 40px;
+    margin-left:10px
+}
+.logo h2 {
+    padding-top: 12px;
+    padding-left: 9px;
+    float: left;
+    text-decoration: none;
+    font-weight: 200;
+    font-size: 16px;
+    color: #808080;
+}
+
+.section {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 10px 10px 10px 10px;
+    color: #cc181e;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 5px;
+}
+
+.options-item {
+    padding: 5px;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 13px;
+    line-height: 20px;
+    color: #5e5e5e;
+    cursor: pointer;
+}
+
+.options-item:hover {
+    background: #444444;
+    color: white;
+}
+
+.content {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.scrollbar-fix {
+    overflow: hidden;
+}
+
+.settings-title {
+    padding:10px;
+    line-height: 15px;
+    font-size: 14px;
+    border-bottom: 1px solid #e8e8e8;
+    font-weight: 100;
+    color: #444444;
+}

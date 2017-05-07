@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "General purpose toolkit for YouTube",
   "browser_action": {
-    "default_icon": "images/icon-19x19.png",
+    "default_icon": "img/icon-19x19.png",
     "default_title": "YouTube Scramblr"
   },
   "permissions": [
@@ -18,24 +18,22 @@
         "https://www.youtube.com/*"
       ],
       "js": [
-        "js/build.js"
+        "js/extension.js"
       ],
       "run_at": "document_idle",
       "all_frames": false
     }
   ],
   "icons": {
-    "16": "images/icon-16x16.png",
-    "19": "images/icon-19x19.png",
-    "48": "images/icon-48x48.png",
-    "128": "images/icon-128x128.png",
-    "130": "images/icon-130x130.png",
-    "550": "images/icon-550x550.png"
+    "16": "img/icon-16x16.png",
+    "19": "img/icon-19x19.png",
+    "48": "img/icon-48x48.png",
+    "128": "img/icon-128x128.png",
+    "130": "img/icon-130x130.png",
+    "550": "img/icon-550x550.png"
   },
   "web_accessible_resources": [
-    "/images/settings.png",
-    "/images/settings-hover.png",
-    "/html/settings-item.html",
-    "/html/settings/settings.html"
+    "settings-item.html",
+    "settings.html"
   ]
 }

@@ -1,2 +1,3 @@
 .idea/
-js/build.js
+build/
+src/js/*.js
