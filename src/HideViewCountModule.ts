@@ -12,10 +12,6 @@ class HideViewCountModule extends Module {
         { "type":"bool", "key":"enabled", "value":"true" }
     ];
 
-    getUUID(): string {
-        return this.UUID;
-    }
-
     init(docmanager: DocumentManager, currentPage: number) {
 
         if (this.readSettingsKey("enabled") == "false") {
@@ -91,6 +87,10 @@ class HideViewCountModule extends Module {
 
     getName(): string {
         return this.NAME;
+    }
+    
+    getUUID(): string {
+        return this.UUID;
     }
 
 }
