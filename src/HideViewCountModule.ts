@@ -5,17 +5,19 @@
 class HideViewCountModule extends Module {
 
 
-    private NAME = "View Count Hider";
+    private NAME = "Hide View Count (HVC)";
     private UUID = "com.scramblr.hideviewcount";
 
     private settings = [
-        { "type":"bool", "key":"enabled", "value":"true" }
+        { "type":"bool", "key":"enabled", "value":"true", "title":"Enable HVC", "desc":"Hide all view counts globally across YouTube." },
     ];
 
     init(docmanager: DocumentManager, currentPage: number) {
 
+        let setting = this.readSettingsKey("enabled");
+
         /* Don't init the module if it's disabled */
-        if (this.readSettingsKey("enabled") == "false") {
+        if (setting == "false") {
             return;
         }
 
@@ -38,8 +40,10 @@ class HideViewCountModule extends Module {
 
     service(docmanager: DocumentManager, currentPage: number) {
 
-        /* Don't service the module if it's disabled */
-        if (this.readSettingsKey("enabled") == "false") {
+        let setting = this.readSettingsKey("enabled");
+
+        /* Don't init the module if it's disabled */
+        if (setting == "false") {
             return;
         }
 

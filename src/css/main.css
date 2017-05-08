@@ -92,3 +92,28 @@ html, body {
     font-weight: 100;
     color: #444444;
 }
+.bool-sett-title {
+    float: left;
+}
+.bool-sett {
+    margin-bottom: 10px;
+}
+.bool-sett-float {
+    margin: 10px;
+    float: left;
+}
+.bool-set-checkwrap {
+    overflow: hidden;
+}
+.bool-set-checkwrap h3 {
+    margin: 11px 11px 11px 0;
+    font-weight: 100;
+}
+#settings-container {
+    padding: 20px 20px 20px 20px;
+}
+.bool-sett-desc {
+    margin-left: 10px;
+    color: #888888;
+    font-size: 14px;
+}
