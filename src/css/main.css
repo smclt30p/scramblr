@@ -83,6 +83,10 @@ html, body {
     margin: 0px 0px 15px 0px;
 }
 
+label {
+    cursor: pointer;
+}
+
 label, .text-setting-caption {
     color: #5e5e5e;
     font-size: 14px;
@@ -104,7 +108,8 @@ label, .text-setting-caption {
 input[type=checkbox], input[type=radio] {
   vertical-align: middle;
   position: relative;
-    margin: 5px;
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
   bottom: 1px;
 }
 
