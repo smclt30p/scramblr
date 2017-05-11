@@ -3,6 +3,7 @@ class TrumpFilterModule extends Module {
 
     private NAME = "Trump Filter";
     private UUID = "com.scramblr.trumpfilter";
+    private DESCRIPTION = "Hides all videos from Donald Trump in the suggestions box and search results.";
 
     private settings = [
         {
@@ -136,6 +137,10 @@ class TrumpFilterModule extends Module {
 
     getUUID(): string {
         return this.UUID;
+    }
+
+    getDescription(): string {
+        return this.DESCRIPTION;
     }
 
 }

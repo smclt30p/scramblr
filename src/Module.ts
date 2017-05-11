@@ -89,6 +89,13 @@ abstract class Module {
     abstract getName() : string;
 
     /**
+     * Return a short human readable description of the module.
+     *
+     * This is used in the settings interface to be displayed below the module name;
+     */
+    abstract getDescription() : string;
+
+    /**
      * Return a UUID of the module in a Java-style namespace/package name. For example:
      * "com.scramblr.genericmodule1".
      *

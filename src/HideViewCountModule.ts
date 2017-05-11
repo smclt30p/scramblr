@@ -5,8 +5,10 @@
 class HideViewCountModule extends Module {
 
 
+
     private NAME = "Hide View Count (HVC)";
     private UUID = "com.scramblr.hideviewcount";
+    private DESCRIPTION = "This module hides all view counters from YouTube making every video equal.";
 
     private settings = [
         { "type":"bool", "key":"enabled", "value":"true", "title":"Enable HVC", "desc":"Hide all view counts globally across YouTube." },
@@ -154,6 +156,10 @@ class HideViewCountModule extends Module {
 
     getUUID(): string {
         return this.UUID;
+    }
+
+    getDescription(): string {
+        return this.DESCRIPTION;
     }
 
 }
