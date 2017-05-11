@@ -12,13 +12,7 @@ class TrumpFilterModule extends Module {
             "value": "true",
             "title": "Enable Trump Filter",
             "desc": "Hide all videos whose title contain the word 'Trump'."
-        },{
-            "type": "str",
-            "key": "test1",
-            "value": "This is a test",
-            "title": "Banned words list",
-            "desc": "Comma separated list of words that are banned to appear on YouTube and which will be prettified"
-        },
+        }
     ];
 
     private nono : string[] = [
