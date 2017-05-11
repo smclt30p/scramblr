@@ -1,5 +1,6 @@
 ///<reference path="Module.ts"/>
 ///<reference path="HideViewCountModule.ts"/>
+///<reference path="TrumpFilterModule.ts"/>
 
 class ModuleManager {
 
@@ -9,6 +10,7 @@ class ModuleManager {
     constructor() {
 
         this.modules.push(new HideViewCountModule());
+        this.modules.push(new TrumpFilterModule());
 
     }
 

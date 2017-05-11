@@ -1,12 +1,12 @@
 ///<reference path="Utilities.ts"/>
-class SettingsUI {
+class PreferencesUserInterface {
 
     private boolHtml : string;
 
-    public init(start: () => void) : void {
+    public init(setting1: Preferences, start: (setting: Preferences) => void) : void {
         Utilities.fetchLocalFile("bool-sett.html", (data: string) => {
             this.boolHtml = data;
-            start();
+            start(setting1);
         });
 
     }
@@ -35,7 +35,8 @@ class SettingsUI {
     }
 
 
-    public injectSidebarMenuItemsAndListen(modules: Module[], clickhandler: (module: Module) => void) : void {
+    public populateSidebar(setting: Preferences, modules: Module[],
+                           clickhandler: (setting1: Preferences, module: Module) => void) : void {
 
         let list = document.getElementById("options-list");
 
@@ -45,14 +46,14 @@ class SettingsUI {
             li.setAttribute("uuid", modules[i].getUUID());
             li.innerHTML = modules[i].getName();
             li.addEventListener("click", () => {
-               clickhandler(modules[i]);
+               clickhandler(setting,modules[i]);
             });
             list.appendChild(li);
         }
 
     }
 
-    public pupulateSettingsAndListen(module: Module, callback: (uuid: string, value: any, type: Object)=> void)  {
+    public injectSettings(setting: Preferences, module: Module, callback: (setting1: Preferences, module: Module, uuid: string, value: any, type: Object)=> void)  {
 
         let title = document.getElementById("settings-cont-title");
         let settings = module.getSettings();
@@ -70,7 +71,7 @@ class SettingsUI {
                 case "bool":
 
                     let element = this.constructBooleanToggle(settings[i].value == "true", keyed, settings[i].title, settings[i].desc, (uuid: string, state: boolean) => {
-                        callback(uuid, !state, state.constructor);
+                        callback(setting, module, uuid, !state, state.constructor);
                     });
 
                     container.appendChild(element);
@@ -80,19 +81,4 @@ class SettingsUI {
 
     }
 
-    public clickFirstItemFake() {
-
-        let elements = document.getElementsByClassName("click");
-
-        if (elements.length == 0) {
-            Logger.info("Nothing to click on...");
-            return;
-        }
-
-        let evObj = document.createEvent('Events');
-        evObj.initEvent("click", true, false);
-        elements[0].dispatchEvent(evObj);
-
-
-    }
 }

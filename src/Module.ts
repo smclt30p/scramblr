@@ -168,6 +168,7 @@ abstract class Module {
 
         let settings = this.getSettings();
         let self = this;
+        self.settingsCount = 0;
 
         Logger.verbose("Loading keys for " + self.getName());
 
@@ -215,8 +216,6 @@ abstract class Module {
         }
 
         if (temp == undefined) throw new Error("Key not found in namespace " + this.getUUID() + ": " + key);
-
-        Logger.verbose("Returning " + temp + " for key " + this.getUUID() + "." + key);
 
         return temp;
 

@@ -1,4 +1,4 @@
-class YouTubeDOM {
+abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
     private static PAGE_SEARCH_RESULTS_TOKEN: string = "/results";
@@ -15,7 +15,7 @@ class YouTubeDOM {
     public static PAGE_UNKNOWN: number = 6;
     public static PAGE_SUBSCRIPTIONS: number = 7;
 
-    public getCurrentPage(): number {
+    public static getCurrentPage(): number {
 
         if (window.location.pathname.indexOf(YouTubeDOM.PAGE_VIDEO_PLAYING_TOKEN) != -1) return YouTubeDOM.PAGE_VIDEO;
         if (window.location.pathname.indexOf(YouTubeDOM.PAGE_SEARCH_RESULTS_TOKEN) != -1) return YouTubeDOM.PAGE_SEARCH;
@@ -26,11 +26,11 @@ class YouTubeDOM {
         return YouTubeDOM.PAGE_UNKNOWN;
     }
 
-    public injectUserInterface(): void {
+    public static injectUserInterface(): void {
 
         try {
 
-            this.injectMenuButton();
+            YouTubeDOM.injectMenuButton();
 
         } catch (e) {
             throw e;
@@ -38,7 +38,7 @@ class YouTubeDOM {
 
     };
 
-    private injectMenuButton(): void {
+    private static injectMenuButton(): void {
 
         Utilities.fetchLocalFile("settings-item.html", function (data) {
 
@@ -59,5 +59,10 @@ class YouTubeDOM {
         });
     };
 
+    private getVisibleVideoThumbnails() : HTMLCollectionOf<Element> {
+
+        return undefined;
+
+    }
 
 }

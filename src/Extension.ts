@@ -6,7 +6,6 @@
 class Extension {
 
     private spadom: DocumentManager;
-    private ytdom: YouTubeDOM;
     private modulemanager: ModuleManager;
     private modules: Module[];
 
@@ -15,7 +14,6 @@ class Extension {
         Logger.info("Scramblr v1.0 loaded!");
 
         this.spadom = DocumentManager.getInstance();
-        this.ytdom = new YouTubeDOM();
         this.modulemanager = new ModuleManager();
 
         this.modules = this.modulemanager.getLoadedModules();
@@ -24,16 +22,16 @@ class Extension {
 
             try {
 
-                this.ytdom.injectUserInterface();
+                YouTubeDOM.injectUserInterface();
 
                 for (let i = 0; i < this.modules.length; i++) {
-                    this.modules[i].init(this.spadom, this.ytdom.getCurrentPage());
+                    this.modules[i].init(this.spadom, YouTubeDOM.getCurrentPage());
                 }
 
                 this.spadom.observeContent(() => {
 
                     for (let i = 0; i < this.modules.length; i++) {
-                        this.modules[i].service(this.spadom, this.ytdom.getCurrentPage());
+                        this.modules[i].service(this.spadom, YouTubeDOM.getCurrentPage());
                     }
 
                 });
