@@ -23,16 +23,19 @@ class Preferences {
 
     private loadModules(self: Preferences) : void {
 
-        self.settingsui.populateSidebar(self, self.modules, self.moduleSidebarClicked);
+        //self.settingsui.populateSidebar(self, self.modules, self.moduleSidebarClicked);
+
+
+        for (let i = 0; i < self.modules.length; i++) {
+            self.modules[i].loadAllKeys(() => {
+                self.settingsui.injectSettings(self, self.modules[i], self.settingChanged);
+
+            });
+        }
 
     }
 
     private moduleSidebarClicked(self: Preferences, module: Module) : void {
-
-        module.loadAllKeys(() => {
-            self.settingsui.injectSettings(self, module, self.settingChanged);
-
-        });
 
     }
 
@@ -45,6 +48,11 @@ class Preferences {
             case Boolean:
                 api.writeSetting(uuid, value.toString());
                 break;
+
+            case String:
+                api.writeSetting(uuid, value);
+                break;
+
             default:
                 Logger.error("Unknown setting type: " + type);
                 return;

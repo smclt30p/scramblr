@@ -2,12 +2,38 @@
 class PreferencesUserInterface {
 
     private boolHtml : string;
+    private strElem : string;
+
+    private elements: number = 0;
 
     public init(setting1: Preferences, start: (setting: Preferences) => void) : void {
+
+        const self = this;
+
         Utilities.fetchLocalFile("bool-sett.html", (data: string) => {
-            this.boolHtml = data;
-            start(setting1);
+            Logger.verbose("Fetching bool-sett");
+            self.boolHtml = data;
+            self.conditionalStart(setting1, start);
         });
+
+        Utilities.fetchLocalFile("str-sett.html", (data: string) => {
+            Logger.verbose("Fetching str-sett");
+            self.strElem = data;
+            self.conditionalStart(setting1, start);
+        });
+
+    }
+
+    private conditionalStart(settings: Preferences, start: (preferences: Preferences) => void) : void {
+
+        this.elements++;
+
+        if (this.elements == 2) {
+            Logger.verbose("Resource loading complete");
+            start(settings);
+        } else {
+            Logger.verbose("Resources not loaded yet, loaded: " + this.elements);
+        }
 
     }
 
@@ -34,6 +60,27 @@ class PreferencesUserInterface {
         return element;
     }
 
+    private constructStringSetting(def: string, uuid: string, title: string, description: string,
+                                   stateChanged: (uuid: string, value: string) => void) : HTMLElement {
+
+        let element = document.createElement("div");
+
+        let elem = this.strElem.replace("%STR_TITLE%", title);
+        elem = elem.replace("%STR_ID%", uuid);
+        elem = elem.replace("%STR_DESC%", description);
+        elem = elem.replace("%STR_DEF%", def);
+        element.innerHTML = elem;
+
+        let input = <HTMLInputElement> element.children[0].children[1];
+
+        input.addEventListener("input", () => {
+            stateChanged(uuid, input.value);
+        });
+
+        return element;
+
+    }
+
 
     public populateSidebar(setting: Preferences, modules: Module[],
                            clickhandler: (setting1: Preferences, module: Module) => void) : void {
@@ -58,7 +105,6 @@ class PreferencesUserInterface {
         let title = document.getElementById("settings-cont-title");
         let settings = module.getSettings();
         let container = document.getElementById("settings-container");
-        container.innerHTML = "";
 
         title.innerHTML = module.getName();
 
@@ -70,11 +116,27 @@ class PreferencesUserInterface {
 
                 case "bool":
 
-                    let element = this.constructBooleanToggle(settings[i].value == "true", keyed, settings[i].title, settings[i].desc, (uuid: string, state: boolean) => {
+                    let elementbool = this.constructBooleanToggle(settings[i].value == "true", keyed,
+                        settings[i].title, settings[i].desc, (uuid: string, state: boolean) => {
+
                         callback(setting, module, uuid, !state, state.constructor);
+
                     });
 
-                    container.appendChild(element);
+                    container.appendChild(elementbool);
+
+                    break;
+
+                case "str":
+
+                    let elementstr = this.constructStringSetting(settings[i].value, keyed, settings[i].title,
+                        settings[i].desc, (uuid: string, value: string) => {
+
+                        callback(setting, module, uuid, value, value.constructor);
+
+                    });
+
+                    container.appendChild(elementstr);
             }
 
         }

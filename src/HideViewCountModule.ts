@@ -58,6 +58,9 @@ class HideViewCountModule extends Module {
                 let mainViewCount = document.getElementsByClassName("watch-view-count");
                 let suggestionViewCount = document.getElementsByClassName("view-count");
 
+                let likes = document.getElementsByClassName("like-button-renderer-like-button");
+                let dislikes = document.getElementsByClassName("like-button-renderer-dislike-button");
+
                 /* IMPORTANT! IMPORTANT! IMPORTANT! WHEN MODIFYING THE DOM YOU MUST USE
                  * DocumentManager.requestDocumentModify(), OR ELSE THE WHOLE PAGE
                  * WILL FREEZE AND CRASH !!!
@@ -71,6 +74,18 @@ class HideViewCountModule extends Module {
 
                     HideViewCountModule.hideElements(mainViewCount);
                     HideViewCountModule.hideElements(suggestionViewCount);
+
+                });
+
+                docmanager.requestDocumentModify(() => {
+
+                    for (let i = 0; i < likes.length; i++) {
+                        likes[i].innerHTML = "";
+                    }
+
+                    for (let i = 0; i < dislikes.length; i++) {
+                        dislikes[i].innerHTML = "";
+                    }
 
                 });
 

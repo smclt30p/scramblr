@@ -59,10 +59,12 @@ abstract class YouTubeDOM {
         });
     };
 
-    private getVisibleVideoThumbnails() : HTMLCollectionOf<Element> {
+    // TODO: Abstract document.getElement* operations via this class
 
-        return undefined;
-
-    }
+    // private getVisibleVideoThumbnails() : HTMLCollectionOf<Element> {
+    //
+    //     return undefined;
+    //
+    // }
 
 }
