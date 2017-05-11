@@ -9,11 +9,16 @@ class TrumpFilterModule extends Module {
             "type": "bool",
             "key": "enabled",
             "value": "true",
-            "title": "Enable Trump/SJW Filter",
+            "title": "Enable Trump Filter",
             "desc": "Hide all videos whose title contain the word 'Trump'."
         },
     ];
 
+    private nono : String[] = [
+        "TRUMP",
+        "trump",
+        "Trump"
+    ];
 
     init(docmanager: DocumentManager, currentPage: number) {
 
@@ -73,6 +78,16 @@ class TrumpFilterModule extends Module {
 
     }
 
+    private containsTrump(word: String) : boolean {
+
+        for (let i = 0; i < this.nono.length; i++) {
+            if (word.indexOf(this.nono[i]) != -1) return true;
+        }
+
+        return false;
+
+    }
+
     private filterTrumpByClassName(docmanager: DocumentManager, classname: string) : void {
 
         let mainViewCount = document.getElementsByClassName(classname);
@@ -82,8 +97,7 @@ class TrumpFilterModule extends Module {
             /* Yeah, right */
 
             if (mainViewCount[i] != undefined && mainViewCount[i] != null) {
-                if (mainViewCount[i].innerHTML.indexOf("trump") != -1 || mainViewCount[i].innerHTML.indexOf("Trump") != -1 ||
-                    mainViewCount[i].innerHTML.indexOf("TRUMP") != -1) {
+                if (this.containsTrump(mainViewCount[i].innerHTML)) {
 
                     docmanager.requestDocumentModify(() => {
                         mainViewCount[i].setAttribute("class", "trump-hidden");
