@@ -78,7 +78,7 @@ class TrumpFilterModule extends Module {
 
     }
 
-    private containsTrump(word: String) : boolean {
+    private containsTrump(word: string) : boolean {
 
         for (let i = 0; i < this.nono.length; i++) {
             if (word.indexOf(this.nono[i]) != -1) return true;
