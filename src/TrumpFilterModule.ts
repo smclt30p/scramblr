@@ -14,7 +14,7 @@ class TrumpFilterModule extends Module {
         },
     ];
 
-    private nono : String[] = [
+    private nono : string[] = [
         "TRUMP",
         "trump",
         "Trump"
