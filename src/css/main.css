@@ -6,6 +6,7 @@
 
 html, body {
     height: 100%;
+    overflow: hidden;
 }
 
 #wrapper {
@@ -15,45 +16,23 @@ html, body {
 
 #sidebar {
     height: 100%;
-    width: 300px;
-    border-right: 1px solid #e8e8e8;
-    overflow-y: scroll;
+    width: 180px;
 }
 
 #main-container {
     height: 100%;
     width: 100%;
-    background: #f1f1f1;
     overflow-y: scroll;
+    padding: 10px;
 }
 
-.logo {
-    height: 40px;    
-    border-bottom: 1px solid #e8e8e8;
-}
-
-.logo img {
-    float: left;
-    max-height: 40px;
-    margin-left:10px
-}
 .logo h2 {
-    padding-top: 12px;
-    padding-left: 9px;
-    float: left;
+    padding: 20px 0px 20px 20px;
     text-decoration: none;
     font-weight: 200;
+    color: #5c6166;
     font-size: 16px;
     color: #808080;
-}
-
-.section {
-    font-size: 11px;
-    line-height: 13px;
-    padding: 10px 10px 10px 10px;
-    color: #cc181e;
-    border-bottom: 1px solid #e8e8e8;
-    margin-bottom: 5px;
 }
 
 .options-item {
@@ -72,48 +51,72 @@ html, body {
     color: white;
 }
 
-.content {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 20px;
-    background: white;
-    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+.module-container {
+    margin: 10px;
 }
 
-.scrollbar-fix {
-    overflow: hidden;
-}
-
-.settings-title {
-    padding:10px;
-    line-height: 15px;
-    font-size: 14px;
-    border-bottom: 1px solid #e8e8e8;
+.module-container h3 {
     font-weight: 100;
-    color: #444444;
+    margin: 10px 10px 10px 0px;
+    font-size: 18px;
 }
-.bool-sett-title {
-    float: left;
+
+.module-inner {
+    margin: 0px 0px 5px 10px;
+    width: 500px;;
 }
-.bool-sett {
+
+.module-line {
+    width: 4px;
+    margin-left: 5px;
+    border-left: 1px solid #d2d2d2;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.module-flex-wrap {
+    display: flex;
+    width: 100%;
+}
+
+.module-desc {
+    font-size: 14px;
+    color: #888888;
+    margin: 0px 0px 15px 0px;
+}
+
+label {
+    cursor: pointer;
+}
+
+label, .text-setting-caption {
+    font-size: 14px;
+    margin: 5px 5px 5px 0px;
+}
+
+.module-setting-desc {
+    color: #888888;
+    font-size: 12px;
+    margin: 5px 0px 0px 0px;
+}
+
+.module-setting {
     margin-bottom: 10px;
 }
-.bool-sett-float {
-    margin: 10px;
-    float: left;
+
+/* Checkbox-label hack */
+
+input[type=checkbox], input[type=radio] {
+  vertical-align: middle;
+  position: relative;
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
+  bottom: 1px;
 }
-.bool-set-checkwrap {
-    overflow: hidden;
+
+input[type=text] {
+    display: block;
 }
-.bool-set-checkwrap h3 {
-    margin: 11px 11px 11px 0;
-    font-weight: 100;
-}
-#settings-container {
-    padding: 20px 20px 20px 20px;
-}
-.bool-sett-desc {
-    margin-left: 10px;
-    color: #888888;
-    font-size: 14px;
+
+input[type=radio] {
+  bottom: 2px;
 }

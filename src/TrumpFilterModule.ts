@@ -3,6 +3,7 @@ class TrumpFilterModule extends Module {
 
     private NAME = "Trump Filter";
     private UUID = "com.scramblr.trumpfilter";
+    private DESCRIPTION = "Hides all videos from Donald Trump in the suggestions box and search results.";
 
     private settings = [
         {
@@ -11,13 +12,7 @@ class TrumpFilterModule extends Module {
             "value": "true",
             "title": "Enable Trump Filter",
             "desc": "Hide all videos whose title contain the word 'Trump'."
-        },{
-            "type": "str",
-            "key": "test1",
-            "value": "This is a test",
-            "title": "Banned words list",
-            "desc": "Comma separated list of words that are banned to appear on YouTube and which will be prettified"
-        },
+        }
     ];
 
     private nono : string[] = [
@@ -136,6 +131,10 @@ class TrumpFilterModule extends Module {
 
     getUUID(): string {
         return this.UUID;
+    }
+
+    getDescription(): string {
+        return this.DESCRIPTION;
     }
 
 }

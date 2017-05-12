@@ -23,19 +23,15 @@ class Preferences {
 
     private loadModules(self: Preferences) : void {
 
-        //self.settingsui.populateSidebar(self, self.modules, self.moduleSidebarClicked);
-
-
         for (let i = 0; i < self.modules.length; i++) {
+
             self.modules[i].loadAllKeys(() => {
+
                 self.settingsui.injectSettings(self, self.modules[i], self.settingChanged);
 
             });
+
         }
-
-    }
-
-    private moduleSidebarClicked(self: Preferences, module: Module) : void {
 
     }
 
