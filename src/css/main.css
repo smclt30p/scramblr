@@ -182,12 +182,13 @@ input[type=radio] {
 
 .copyright {
     color: #999999;
+    font-size: 12px;
 }
 
 .about-link {
     color: rgb(17, 85, 204);
     text-decoration: none;
-    font-size: 15px;
+    font-size: 12px;
     display: block;
     width: 100px;
 }
