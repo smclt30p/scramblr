@@ -46,7 +46,7 @@ html, body {
 }
 
 .options-item:hover, .options-item-selected {
-    background: #444444;
+    background: #b7b5b5;
     color: white;
 }
 
