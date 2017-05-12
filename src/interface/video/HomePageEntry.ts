@@ -17,21 +17,23 @@ class HomePageEntry extends QuerySelectorEntry {
         return this.root;
     }
 
-    getSelectors(): Object {
+    getSelectors(): object {
         return this.selectors;
     }
 
 
     setViewCount(count: string): void {
-        super.setViewCount(count);
 
         if (count == "") {
 
             let dot = this.root.querySelector(".yt-lockup-meta-info > li:nth-child(2)");
+            let viewsold = <HTMLElement> this.root.querySelector(this.selectors["viewcount"]);
 
-            if (dot != null) {
+            if (dot != null && viewsold != null) {
 
                 let oldhtml = dot.innerHTML;
+                dot.remove();
+                viewsold.innerHTML = oldhtml;
 
             }
 

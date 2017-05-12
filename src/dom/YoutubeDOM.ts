@@ -3,6 +3,7 @@
 ///<reference path="../interface/WatchHeader.ts"/>
 ///<reference path="../interface/video/SearchResultEntry.ts"/>
 ///<reference path="../interface/video/HomePageEntry.ts"/>
+///<reference path="../interface/video/FeedEntry.ts"/>
 abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
@@ -10,7 +11,7 @@ abstract class YouTubeDOM {
     private static PAGE_HOME_PAGE_TOKEN: string = "/";
     private static PAGE_CHANNEL_VIEW_TOKEN: string = "/channel";
     private static PAGE_USER_VIEW_TOKEN: string = "/user";
-    private static PAGE_SUBSCRIBERS_TOKEN: string = "/subscriptions";
+    private static PAGE_SUBSCRIBERS_TOKEN: string = "/feed";
 
     public static PAGE_VIDEO: number = 1;
     public static PAGE_SEARCH: number = 2;
@@ -99,6 +100,21 @@ abstract class YouTubeDOM {
 
                for (let i = 0; i < homepage.length; i++) {
                    ret.push(new HomePageEntry( <HTMLElement> homepage[i]));
+               }
+
+               break;
+
+           case YouTubeDOM.PAGE_SUBSCRIPTIONS:
+
+               let items = document.getElementsByClassName("feed-item-container");
+               let items2 = document.getElementsByClassName("expanded-shelf-content-item-wrapper");
+
+               for (let i = 0; i < items.length; i++) {
+                   ret.push(new FeedEntry( <HTMLElement> items[i]));
+               }
+
+               for (let i = 0; i < items2.length; i++) {
+                   ret.push(new FeedEntry( <HTMLElement> items2[i]));
                }
 
        }

@@ -63,8 +63,10 @@ class HideViewCountModule extends Module {
 
                 break;
 
+            case YouTubeDOM.PAGE_SUBSCRIPTIONS:
             case YouTubeDOM.PAGE_HOME:
             case YouTubeDOM.PAGE_SEARCH:
+
 
                 let videos = YouTubeDOM.getVisibleVideos();
 
@@ -72,6 +74,27 @@ class HideViewCountModule extends Module {
                     videos[i].setViewCount("");
                 }
 
+
+                break;
+
+            case YouTubeDOM.PAGE_USER:
+            case YouTubeDOM.PAGE_CHANNEL:
+
+                let views = document.getElementsByClassName("yt-lockup-meta-info");
+                let views2 = document.getElementsByClassName("count");
+
+                docmanager.requestDocumentModify(() => {
+
+                    for (let i = 0; i < views.length; i++) {
+                        views[i].innerHTML = "";
+                    }
+
+
+                    for (let i = 0; i < views2.length; i++) {
+                        views2[i].innerHTML = "";
+                    }
+
+                });
 
                 break;
 

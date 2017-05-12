@@ -20,7 +20,7 @@ class SuggestionEntry extends QuerySelectorEntry {
         return this.innerElement;
     }
 
-    getSelectors(): Object {
+    getSelectors(): object {
         return this.selectors;
     }
 
