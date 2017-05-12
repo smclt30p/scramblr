@@ -174,9 +174,12 @@ class PreferencesUserInterface {
 
     private toggleSelectedStyle(state: boolean, style: string) : string {
 
+        let hasAlready = style.indexOf("options-item-selected") != -1;
+
         if (!state) {
             return style.replace("options-item-selected", "");
         } else {
+            if (hasAlready) return style;
             return style + " options-item-selected";
         }
 
