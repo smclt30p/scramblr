@@ -1,8 +1,8 @@
-///<reference path="ModuleManager.ts"/>
-///<reference path="Utilities.ts"/>
+///<reference path="modules/ModuleManager.ts"/>
+///<reference path="common/Utilities.ts"/>
 ///<reference path="dom/PreferencesUserInterface.ts"/>
 ///<reference path="compat/Browser.ts"/>
-///<reference path="Logger.ts"/>
+///<reference path="common/Logger.ts"/>
 
 class Preferences {
 

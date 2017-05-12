@@ -1,23 +1,26 @@
 ///<reference path="../exception/NotImplementedException.ts"/>
 
-class WatchHeader implements VideoEntry {
+class WatchHeader extends QuerySelectorEntry {
 
-    private watchHeaderElement : Element;
+    private selectors = {
+        "title": "#eow-title",
+        "viewcount": ".watch-view-count",
+        "uploader": ".yt-user-info > a",
+    };
 
-    constructor(element: Element) {
+    private watchHeaderElement : HTMLElement;
+
+    constructor(element: HTMLElement) {
+        super();
         this.watchHeaderElement = element;
     }
 
-    getTitle(): string {
-        return this.watchHeaderElement.querySelector("#eow-title").innerHTML;
+    getRootElement(): HTMLElement {
+        return this.watchHeaderElement;
     }
 
-    getViewCount(): string {
-        return this.watchHeaderElement.querySelector(".watch-view-count").innerHTML;
-    }
-
-    getUploader(): string {
-        return this.watchHeaderElement.querySelector(".yt-user-info > a").innerHTML;
+    getSelectors(): Object {
+        return this.selectors;
     }
 
     getLikes() : string {
@@ -28,31 +31,41 @@ class WatchHeader implements VideoEntry {
         return this.watchHeaderElement.querySelector(".like-button-renderer-dislike-button > span").innerHTML;
     }
 
-    setTitle(title: string): void {
-        let titleElement = this.watchHeaderElement.querySelector("#eow-title");
-        if (titleElement != null) titleElement.innerHTML = title;
-    }
-
-    setViewCount(count: string): void {
-        let viewCountElement = this.watchHeaderElement.querySelector(".watch-view-count");
-        if (viewCountElement != null) viewCountElement.innerHTML = count;
-    }
-
-    setUploader(uploader: string): void {
-        let uploaderElement = this.watchHeaderElement.querySelector(".yt-user-info > a");
-        if (uploaderElement != null) uploaderElement.innerHTML = uploader;
-    }
-
     setLikes(number: string) : void {
-        let likesElement = this.watchHeaderElement.querySelector(".like-button-renderer-like-button > span");
-        if (likesElement != null) likesElement.innerHTML = number;
+
+        let container = this.watchHeaderElement.querySelector(".like-button-renderer");
+
+        if (container == null) return;
+
+        for (let i = 0; i < container.childElementCount / 2; i++) {
+
+            let numcont = container.children[i].querySelector("span > button > span");
+
+            if (numcont != null) {
+                numcont.innerHTML = number;
+            }
+
+        }
+
     }
 
     setDislikes(number: string) : void {
-        let dislikesElement = this.watchHeaderElement.querySelector(".like-button-renderer-dislike-button > span");
-        if (dislikesElement != null) dislikesElement.innerHTML = number;
-    }
 
+        let container = this.watchHeaderElement.querySelector(".like-button-renderer");
+
+        if (container == null) return;
+
+        for (let i = 0; i < container.childElementCount / 2; i++) {
+
+            let numcont = container.children[i + 2].querySelector("span > button > span");
+
+            if (numcont != null) {
+                numcont.innerHTML = number;
+            }
+
+        }
+
+    }
 
     hideVideo(): void {
         throw new NotImplementedException("Not supported.");

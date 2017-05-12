@@ -1,7 +1,8 @@
 ///<reference path="../interface/video/VideoEntry.ts"/>
-///<reference path="../interface/video/Suggestion.ts"/>
+///<reference path="../interface/video/SuggestionEntry.ts"/>
 ///<reference path="../interface/WatchHeader.ts"/>
-///<reference path="../interface/video/SearchResult.ts"/>
+///<reference path="../interface/video/SearchResultEntry.ts"/>
+///<reference path="../interface/video/HomePageEntry.ts"/>
 abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
@@ -77,7 +78,7 @@ abstract class YouTubeDOM {
                let suggestions = document.getElementsByClassName("related-list-item");
 
                for (let i = 0; i < suggestions.length; i++) {
-                   ret.push(new Suggestion(suggestions[i]));
+                   ret.push(new SuggestionEntry(suggestions[i]));
                }
 
                break;
@@ -87,7 +88,17 @@ abstract class YouTubeDOM {
                let results = document.getElementsByClassName("yt-lockup-video");
 
                for (let i = 0; i < results.length; i++) {
-                   ret.push(new SearchResult(results[i]));
+                   ret.push(new SearchResultEntry(results[i]));
+               }
+
+               break;
+
+           case YouTubeDOM.PAGE_HOME:
+
+               let homepage = document.getElementsByClassName("yt-shelf-grid-item");
+
+               for (let i = 0; i < homepage.length; i++) {
+                   ret.push(new HomePageEntry( <HTMLElement> homepage[i]));
                }
 
        }

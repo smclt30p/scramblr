@@ -1,4 +1,4 @@
-///<reference path="../dom/YoutubeDOM.ts"/>
+///<reference path="../../dom/YoutubeDOM.ts"/>
 class TrumpFilterModule extends Module {
 
     private NAME = "Trump Filter";
@@ -28,13 +28,6 @@ class TrumpFilterModule extends Module {
     }
 
     service(docmanager: DocumentManager, currentPage: number) {
-
-        let setting = this.readSettingsKey("enabled");
-
-        /* Don't init the module if it's disabled */
-        if (setting == "false") {
-            return;
-        }
 
         const self = this;
 

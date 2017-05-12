@@ -1,6 +1,6 @@
-///<reference path="../Utilities.ts"/>
+///<reference path="../common/Utilities.ts"/>
 ///<reference path="../compat/Browser.ts"/>
-///<reference path="../Interval.ts"/>
+///<reference path="../common/Interval.ts"/>
 class DocumentManager {
 
     private static instance: DocumentManager = undefined;

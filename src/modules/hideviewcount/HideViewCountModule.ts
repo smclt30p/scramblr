@@ -1,6 +1,6 @@
 ///<reference path="../Module.ts"/>
-///<reference path="../dom/YoutubeDOM.ts"/>
-///<reference path="../Logger.ts"/>
+///<reference path="../../dom/YoutubeDOM.ts"/>
+///<reference path="../../common/Logger.ts"/>
 
 class HideViewCountModule extends Module {
 
@@ -33,13 +33,6 @@ class HideViewCountModule extends Module {
 
     service(docmanager: DocumentManager, currentPage: number) {
 
-        let setting = this.readSettingsKey("enabled");
-
-        /* Don't init the module if it's disabled */
-        if (setting == "false") {
-            return;
-        }
-
         /* Determine the current page that the user is looking at */
         switch (currentPage) {
 
@@ -61,12 +54,24 @@ class HideViewCountModule extends Module {
 
                         if (this.readSettingsKey("hideLikes") != "false") {
 
-                            header.setDislikes("");
-                            header.setLikes("");
+                            header.setDislikes("Dislike");
+                            header.setLikes("Like");
                         }
                     }
 
                 });
+
+                break;
+
+            case YouTubeDOM.PAGE_HOME:
+            case YouTubeDOM.PAGE_SEARCH:
+
+                let videos = YouTubeDOM.getVisibleVideos();
+
+                for (let i = 0; i < videos.length; i++) {
+                    videos[i].setViewCount("");
+                }
+
 
                 break;
 

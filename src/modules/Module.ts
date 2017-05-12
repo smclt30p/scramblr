@@ -1,7 +1,7 @@
-///<reference path="dom/DocumentManager.ts"/>
-///<reference path="compat/Browser.ts"/>
-///<reference path="compat/BrowserAPI.ts"/>
-///<reference path="Logger.ts"/>
+///<reference path="../dom/DocumentManager.ts"/>
+///<reference path="../compat/Browser.ts"/>
+///<reference path="../compat/BrowserAPI.ts"/>
+///<reference path="../common/Logger.ts"/>
 
 /**
  * This class is a template for a Scramblr module.
@@ -242,6 +242,10 @@ abstract class Module {
     public writeSettingsKey(key: string, value: string) : void {
         let UUIDKey = this.getUUID + "." + key;
         Browser.getCurrentBrowserAPI().writeSetting(UUIDKey, value);
+    }
+
+    public isEnabled() : boolean {
+        return this.readSettingsKey("enabled") == "true";
     }
 
 }

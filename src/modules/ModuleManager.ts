@@ -1,6 +1,6 @@
 ///<reference path="Module.ts"/>
-///<reference path="modules/HideViewCountModule.ts"/>
-///<reference path="modules/TrumpFilterModule.ts"/>
+///<reference path="hideviewcount/HideViewCountModule.ts"/>
+///<reference path="trump/TrumpFilterModule.ts"/>
 
 class ModuleManager {
 

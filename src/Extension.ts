@@ -1,7 +1,7 @@
-/// <reference path="Logger.ts"/>
+/// <reference path="common/Logger.ts"/>
 /// <reference path="dom/DocumentManager.ts"/>
 ///<reference path="dom/YoutubeDOM.ts"/>
-///<reference path="ModuleManager.ts"/>
+///<reference path="modules/ModuleManager.ts"/>
 
 class Extension {
 
@@ -25,13 +25,17 @@ class Extension {
                 YouTubeDOM.injectUserInterface();
 
                 for (let i = 0; i < this.modules.length; i++) {
-                    this.modules[i].init(this.spadom, YouTubeDOM.getCurrentPage());
+                    if (this.modules[i].isEnabled()) {
+                        this.modules[i].init(this.spadom, YouTubeDOM.getCurrentPage());
+                    }
                 }
 
                 this.spadom.observeContent(() => {
 
                     for (let i = 0; i < this.modules.length; i++) {
-                        this.modules[i].service(this.spadom, YouTubeDOM.getCurrentPage());
+                        if (this.modules[i].isEnabled()) {
+                            this.modules[i].service(this.spadom, YouTubeDOM.getCurrentPage());
+                        }
                     }
 
                 });
