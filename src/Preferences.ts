@@ -17,17 +17,19 @@ class Preferences {
 
     public main() : void {
 
-        this.settingsui.init(this, this.loadModules);
+        this.settingsui.init(this, this.loadModulesToInterface);
+        this.settingsui.attachSidebarClickListeners(this, this.sideItemChanged);
 
     }
 
-    private loadModules(self: Preferences) : void {
+    private loadModulesToInterface(self: Preferences) : void {
 
         for (let i = 0; i < self.modules.length; i++) {
 
             self.modules[i].loadAllKeys(() => {
 
                 self.settingsui.injectSettings(self, self.modules[i], self.settingChanged);
+                self.settingsui.switchToSettings();
 
             });
 
@@ -57,6 +59,37 @@ class Preferences {
 
         module.loadAllKeys(() => {});
 
+    }
+
+    private sideItemChanged(self : Preferences, action: string) : void {
+
+        switch (action) {
+
+            case "options":
+                self.switchToSettings();
+                break;
+            case "donate":
+                self.switchToDonate();
+                break;
+            case "about":
+                self.switchToAbout();
+                break;
+            default:
+                Logger.error("Unknown action: " + action);
+        }
+
+    }
+
+    private switchToSettings() : void {
+        this.settingsui.switchToSettings();
+    }
+
+    private switchToDonate()  : void {
+        this.settingsui.switchToDonate();
+    }
+
+    private switchToAbout()  : void {
+        this.settingsui.switchToAbout();
     }
 
 }
