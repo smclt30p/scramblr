@@ -1,4 +1,5 @@
 all:
+	mkdir js
 	make extension
 	make settings
 
@@ -9,4 +10,4 @@ settings: Preferences.ts
 	tsc Preferences.ts --outFile js/settings.js
 
 clean:
-	rm -f js/*.js
+	rm -rf js

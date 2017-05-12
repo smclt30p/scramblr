@@ -1,6 +1,6 @@
-///<reference path="DocumentManager.ts"/>
-///<reference path="Browser.ts"/>
-///<reference path="BrowserAPI.ts"/>
+///<reference path="dom/DocumentManager.ts"/>
+///<reference path="compat/Browser.ts"/>
+///<reference path="compat/BrowserAPI.ts"/>
 ///<reference path="Logger.ts"/>
 
 /**

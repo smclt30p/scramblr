@@ -1,4 +1,4 @@
-///<reference path="YoutubeDOM.ts"/>
+///<reference path="../dom/YoutubeDOM.ts"/>
 class TrumpFilterModule extends Module {
 
     private NAME = "Trump Filter";
@@ -112,7 +112,7 @@ class TrumpFilterModule extends Module {
 
     }
 
-    private static hideElements(elements: HTMLCollectionOf<Element>): void {
+    private static hideElements(elements: HTMLCollectionOf<HTMLElement>): void {
         for (let i = 0; i < elements.length; i++) {
             elements[i].setAttribute("class", "hvc-hidden");
         }

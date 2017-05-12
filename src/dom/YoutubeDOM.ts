@@ -1,3 +1,6 @@
+///<reference path="../interface/video/VideoEntry.ts"/>
+///<reference path="../interface/video/Suggestion.ts"/>
+///<reference path="../interface/WatchHeader.ts"/>
 abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
@@ -59,12 +62,34 @@ abstract class YouTubeDOM {
         });
     };
 
-    // TODO: Abstract document.getElement* operations via this class
+    // TODO: Abstract all document.getElement* operations via this class
 
-    // private getVisibleVideoThumbnails() : HTMLCollectionOf<Element> {
-    //
-    //     return undefined;
-    //
-    // }
+   public static getVisibleVideos() : VideoEntry[] {
+
+       let ret : VideoEntry[] = [];
+
+       switch (YouTubeDOM.getCurrentPage()) {
+
+
+           case YouTubeDOM.PAGE_VIDEO:
+
+               let suggestions = document.getElementsByClassName("related-list-item");
+
+               for (let i = 0; i < suggestions.length; i++) {
+                   ret.push(new NowPlayingSuggestedVideo(suggestions[i]));
+               }
+
+       }
+
+       return ret;
+
+   }
+
+   public static getWatchHeader() : WatchHeader {
+       let watch = document.getElementById("watch-header");
+       if (watch == undefined) return null;
+       return new WatchHeader(watch);
+   }
+
 
 }

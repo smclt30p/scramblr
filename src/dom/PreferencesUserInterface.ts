@@ -1,4 +1,4 @@
-///<reference path="Utilities.ts"/>
+///<reference path="../Utilities.ts"/>
 class PreferencesUserInterface {
 
     private boolHtml : string;

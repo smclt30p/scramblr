@@ -1,6 +1,6 @@
 /// <reference path="Logger.ts"/>
-/// <reference path="DocumentManager.ts"/>
-///<reference path="YoutubeDOM.ts"/>
+/// <reference path="dom/DocumentManager.ts"/>
+///<reference path="dom/YoutubeDOM.ts"/>
 ///<reference path="ModuleManager.ts"/>
 
 class Extension {
