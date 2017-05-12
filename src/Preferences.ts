@@ -65,13 +65,13 @@ class Preferences {
 
         switch (action) {
 
-            case "options":
+            case "action-options":
                 self.switchToSettings();
                 break;
-            case "donate":
+            case "action-donate":
                 self.switchToDonate();
                 break;
-            case "about":
+            case "action-about":
                 self.switchToAbout();
                 break;
             default:

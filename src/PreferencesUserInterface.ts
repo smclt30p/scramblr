@@ -11,10 +11,19 @@ class PreferencesUserInterface {
     private aboutContainer: HTMLElement;
     private donateContainer : HTMLElement;
 
+    private settingsMenuItem : HTMLElement;
+    private aboutMenuItem: HTMLElement;
+    private donateMenuItem: HTMLElement;
+
     constructor() {
+
         this.settingsContainer = document.getElementById("settings-container");
         this.aboutContainer = document.getElementById("about-container");
         this.donateContainer = document.getElementById("donate-container");
+
+        this.donateMenuItem = document.getElementById("action-donate");
+        this.aboutMenuItem = document.getElementById("action-about");
+        this.settingsMenuItem = document.getElementById("action-options");
     }
 
     public init(setting1: Preferences, start: (setting: Preferences) => void) : void {
@@ -158,26 +167,69 @@ class PreferencesUserInterface {
         let items = document.getElementsByClassName("options-item");
         for (let i = 0; i < items.length; i++) {
             items[i].addEventListener("click", () => {
-                click(back, items[i].getAttribute("click"));
+                click(back, items[i].getAttribute("id"));
             });
         }
     }
 
+    private toggleSelectedStyle(state: boolean, style: string) : string {
+
+        if (!state) {
+            return style.replace("options-item-selected", "");
+        } else {
+            return style + " options-item-selected";
+        }
+
+    }
+
     public switchToAbout() : void {
+
         this.aboutContainer.style.display = "block";
         this.donateContainer.style.display = "none";
         this.settingsContainer.style.display = "none";
+
+        this.settingsMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(false, this.settingsMenuItem.getAttribute("class")));
+
+        this.aboutMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(true, this.aboutMenuItem.getAttribute("class")));
+
+        this.donateMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(false, this.donateMenuItem.getAttribute("class")));
+
     }
 
     public switchToSettings() : void {
+
         this.aboutContainer.style.display = "none";
         this.donateContainer.style.display = "none";
         this.settingsContainer.style.display = "block";
+
+        this.settingsMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(true, this.settingsMenuItem.getAttribute("class")));
+
+        this.aboutMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(false, this.aboutMenuItem.getAttribute("class")));
+
+        this.donateMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(false, this.donateMenuItem.getAttribute("class")));
+
     }
 
     public switchToDonate() : void {
+
         this.aboutContainer.style.display = "none";
         this.donateContainer.style.display = "block";
         this.settingsContainer.style.display = "none";
+
+        this.settingsMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(false, this.settingsMenuItem.getAttribute("class")));
+
+        this.aboutMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(false, this.aboutMenuItem.getAttribute("class")));
+
+        this.donateMenuItem.setAttribute("class",
+            this.toggleSelectedStyle(true, this.donateMenuItem.getAttribute("class")));
+
     }
 }

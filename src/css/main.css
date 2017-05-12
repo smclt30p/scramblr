@@ -45,7 +45,7 @@ html, body {
     cursor: pointer;
 }
 
-.options-item:hover, options-item-selected {
+.options-item:hover, .options-item-selected {
     background: #444444;
     color: white;
 }
