@@ -7,6 +7,16 @@ class PreferencesUserInterface {
 
     private elements: number = 0;
 
+    private settingsContainer : HTMLElement;
+    private aboutContainer: HTMLElement;
+    private donateContainer : HTMLElement;
+
+    constructor() {
+        this.settingsContainer = document.getElementById("settings-container");
+        this.aboutContainer = document.getElementById("about-container");
+        this.donateContainer = document.getElementById("donate-container");
+    }
+
     public init(setting1: Preferences, start: (setting: Preferences) => void) : void {
 
         const self = this;
@@ -94,7 +104,7 @@ class PreferencesUserInterface {
 
         let moduleElement = this.createModuleElement(module.getName(), module.getDescription());
         let moduleSettingsContainer = moduleElement.children[0].children[1].children[1];
-        let settingsContainer = document.getElementById("main-container");
+        let settingsContainer = document.getElementById("settings-container-inject");
 
 
         let settings = module.getSettings();
@@ -142,5 +152,32 @@ class PreferencesUserInterface {
             .replace("%MODULE_NAME%", name)
             .replace("%MODULE_DESC%", desc);
         return tempElement;
+    }
+
+    public attachSidebarClickListeners(back: Preferences, click: (back1: Preferences, action: string) => void) : void {
+        let items = document.getElementsByClassName("options-item");
+        for (let i = 0; i < items.length; i++) {
+            items[i].addEventListener("click", () => {
+                click(back, items[i].getAttribute("click"));
+            });
+        }
+    }
+
+    public switchToAbout() : void {
+        this.aboutContainer.style.display = "block";
+        this.donateContainer.style.display = "none";
+        this.settingsContainer.style.display = "none";
+    }
+
+    public switchToSettings() : void {
+        this.aboutContainer.style.display = "none";
+        this.donateContainer.style.display = "none";
+        this.settingsContainer.style.display = "block";
+    }
+
+    public switchToDonate() : void {
+        this.aboutContainer.style.display = "none";
+        this.donateContainer.style.display = "block";
+        this.settingsContainer.style.display = "none";
     }
 }
