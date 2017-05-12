@@ -23,26 +23,6 @@ class TrumpFilterModule extends Module {
 
     init(docmanager: DocumentManager, currentPage: number) {
 
-        let setting = this.readSettingsKey("enabled");
-
-        /* Don't init the module if it's disabled */
-        if (setting == "false") {
-            return;
-        }
-
-        /* Create a style element and append it to the DOM
-         * so that we can use this class to override
-         * element class names to just be "trump-hidden".
-         */
-        let style = document.createElement("style");
-        style.setAttribute("id", "trump-hidden-style");
-        style.innerHTML = ".trump-hidden { display: none; }";
-
-        /* Just append once */
-        if (document.getElementById("trump-hidden-style") == null) {
-            document.getElementsByTagName("body")[0].appendChild(style);
-        }
-
         Logger.info("Trump Filter loaded!");
 
     }
@@ -56,26 +36,21 @@ class TrumpFilterModule extends Module {
             return;
         }
 
-        /* Determine the current page that the user is looking at */
-        switch (currentPage) {
+        const self = this;
 
-            /* The user is viewing a video */
-            case YouTubeDOM.PAGE_VIDEO:
-
-                this.filterTrumpByClassName(docmanager, "video-list-item");
-
-                break;
-
-            case YouTubeDOM.PAGE_SEARCH:
-
-                this.filterTrumpByClassName(docmanager, "yt-lockup");
-
-                break;
+        docmanager.requestDocumentModify(() => {
 
 
-            default:
-                return;
-        }
+            let videos = YouTubeDOM.getVisibleVideos();
+
+            for (let i = 0; i < videos.length; i++) {
+
+                if (self.containsTrump(videos[i].getTitle())) {
+                    videos[i].hideVideo();
+                }
+            }
+
+        })
 
     }
 
@@ -87,35 +62,6 @@ class TrumpFilterModule extends Module {
 
         return false;
 
-    }
-
-    private filterTrumpByClassName(docmanager: DocumentManager, classname: string) : void {
-
-        let mainViewCount = document.getElementsByClassName(classname);
-
-        for (let i = 0; i < mainViewCount.length; i++) {
-
-            /* Yeah, right */
-
-            if (mainViewCount[i] != undefined && mainViewCount[i] != null) {
-                if (this.containsTrump(mainViewCount[i].innerHTML)) {
-
-                    docmanager.requestDocumentModify(() => {
-                        mainViewCount[i].setAttribute("class", "trump-hidden");
-                        Logger.verbose("Filtering TRUMP...");
-                    });
-
-                }
-            }
-
-        }
-
-    }
-
-    private static hideElements(elements: HTMLCollectionOf<HTMLElement>): void {
-        for (let i = 0; i < elements.length; i++) {
-            elements[i].setAttribute("class", "hvc-hidden");
-        }
     }
 
     destruct() {

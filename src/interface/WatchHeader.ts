@@ -1,3 +1,5 @@
+///<reference path="../exception/NotImplementedException.ts"/>
+
 class WatchHeader implements VideoEntry {
 
     private watchHeaderElement : Element;
@@ -49,6 +51,11 @@ class WatchHeader implements VideoEntry {
     setDislikes(number: string) : void {
         let dislikesElement = this.watchHeaderElement.querySelector(".like-button-renderer-dislike-button > span");
         if (dislikesElement != null) dislikesElement.innerHTML = number;
+    }
+
+
+    hideVideo(): void {
+        throw new NotImplementedException("Not supported.");
     }
 
 

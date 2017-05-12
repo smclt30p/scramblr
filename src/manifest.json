@@ -11,6 +11,7 @@
     "tabs",
     "storage"
   ],
+  "options_page": "settings.html",
   "content_scripts": [
     {
       "matches": [

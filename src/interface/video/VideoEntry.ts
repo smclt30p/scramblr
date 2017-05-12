@@ -5,4 +5,5 @@ interface VideoEntry {
     setTitle(title: string) : void;
     setViewCount(count: string) : void;
     setUploader(uploader: string) : void;
+    hideVideo() : void;
 }

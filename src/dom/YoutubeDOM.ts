@@ -1,6 +1,7 @@
 ///<reference path="../interface/video/VideoEntry.ts"/>
 ///<reference path="../interface/video/Suggestion.ts"/>
 ///<reference path="../interface/WatchHeader.ts"/>
+///<reference path="../interface/video/SearchResult.ts"/>
 abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
@@ -76,7 +77,17 @@ abstract class YouTubeDOM {
                let suggestions = document.getElementsByClassName("related-list-item");
 
                for (let i = 0; i < suggestions.length; i++) {
-                   ret.push(new NowPlayingSuggestedVideo(suggestions[i]));
+                   ret.push(new Suggestion(suggestions[i]));
+               }
+
+               break;
+
+           case YouTubeDOM.PAGE_SEARCH:
+
+               let results = document.getElementsByClassName("yt-lockup-video");
+
+               for (let i = 0; i < results.length; i++) {
+                   ret.push(new SearchResult(results[i]));
                }
 
        }
