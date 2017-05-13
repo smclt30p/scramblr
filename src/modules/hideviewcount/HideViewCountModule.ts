@@ -22,6 +22,12 @@ class HideViewCountModule extends Module {
             "value": "false",
             "title": "Hide like/dislike counter",
             "desc": "Hide the like and dislike counter to restrict perspective of view count."
+        },{
+            "type": "bool",
+            "key": "hideSpark",
+            "value": "false",
+            "title": "Hide the SparkBar",
+            "desc": "Hide the like and dislike ratio bar AKA SparkBar"
         }
     ];
 
@@ -57,6 +63,17 @@ class HideViewCountModule extends Module {
                             header.setDislikes("Dislike");
                             header.setLikes("Like");
                         }
+
+                    }
+
+                    if (this.readSettingsKey("hideSpark") != "false") {
+
+                        let sparkbar =  document.getElementsByClassName("video-extras-sparkbars");
+
+                        for (let j = 0; j < sparkbar.length; j++) {
+                            sparkbar[j].setAttribute("style", "display: none");
+                        }
+
                     }
 
                 });
