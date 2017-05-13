@@ -4,6 +4,7 @@
 ///<reference path="../interface/video/SearchResultEntry.ts"/>
 ///<reference path="../interface/video/HomePageEntry.ts"/>
 ///<reference path="../interface/video/FeedEntry.ts"/>
+///<reference path="../interface/video/FeedEntryGrid.ts"/>
 abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
@@ -108,6 +109,7 @@ abstract class YouTubeDOM {
 
                let items = document.getElementsByClassName("feed-item-container");
                let items2 = document.getElementsByClassName("expanded-shelf-content-item-wrapper");
+               let items3 = document.getElementsByClassName("yt-shelf-grid-item");
 
                for (let i = 0; i < items.length; i++) {
                    ret.push(new FeedEntry( <HTMLElement> items[i]));
@@ -115,6 +117,10 @@ abstract class YouTubeDOM {
 
                for (let i = 0; i < items2.length; i++) {
                    ret.push(new FeedEntry( <HTMLElement> items2[i]));
+               }
+
+               for (let i = 0; i < items3.length; i++) {
+                   ret.push(new FeedEntryGrid( <HTMLElement> items3[i]));
                }
 
        }
