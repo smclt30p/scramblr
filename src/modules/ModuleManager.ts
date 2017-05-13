@@ -2,6 +2,7 @@
 ///<reference path="hideviewcount/HideViewCountModule.ts"/>
 ///<reference path="trump/TrumpFilterModule.ts"/>
 ///<reference path="contentfilter/ContentFilterModule.ts"/>
+///<reference path="autoskip/AutoSkipModule.ts"/>
 
 class ModuleManager {
 
@@ -12,6 +13,7 @@ class ModuleManager {
 
         this.modules.push(new HideViewCountModule());
         this.modules.push(new ContentFilterModule());
+        this.modules.push(new AutoSkipModule());
         this.modules.push(new TrumpFilterModule());
 
     }

@@ -13,4 +13,4 @@ settings:
 
 deploy:
 	mkdir build
-	cp -r src/img src/js src/css src/*.html src/*.json build/.
+	cp -r src/img src/js src/css src/*.html src/*.xml src/*.json build/.
