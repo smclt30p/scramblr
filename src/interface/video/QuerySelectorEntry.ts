@@ -29,7 +29,7 @@ abstract class QuerySelectorEntry implements VideoEntry {
     }
 
     hideVideo(): void {
-        this.getRootElement().style.display = "none";
+        this.getRootElement().remove();
     }
 
     abstract getRootElement() : HTMLElement;

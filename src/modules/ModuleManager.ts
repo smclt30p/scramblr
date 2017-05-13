@@ -1,6 +1,7 @@
 ///<reference path="Module.ts"/>
 ///<reference path="hideviewcount/HideViewCountModule.ts"/>
 ///<reference path="trump/TrumpFilterModule.ts"/>
+///<reference path="contentfilter/ContentFilterModule.ts"/>
 
 class ModuleManager {
 
@@ -10,6 +11,7 @@ class ModuleManager {
     constructor() {
 
         this.modules.push(new HideViewCountModule());
+        this.modules.push(new ContentFilterModule());
         this.modules.push(new TrumpFilterModule());
 
     }
