@@ -32,6 +32,7 @@
   },
   "web_accessible_resources": [
     "settings-item.html",
-    "settings.html"
+    "settings.html",
+    "autoskip.xml"
   ]
 }
