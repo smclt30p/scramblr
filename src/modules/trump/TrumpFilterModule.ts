@@ -9,13 +9,13 @@ class TrumpFilterModule extends Module {
         {
             "type": "bool",
             "key": "enabled",
-            "value": "true",
+            "value": "false",
             "title": "Enable Trump Filter",
             "desc": "Hide all videos whose title contain the word 'Trump'."
         },{
             "type": "bool",
             "key": "hidewhitehouse",
-            "value": "true",
+            "value": "false",
             "title": "Hide all videos from the White House",
             "desc": "Hide all the White House press briefing videos from suggestions and search results."
         }

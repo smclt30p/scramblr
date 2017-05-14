@@ -11,7 +11,7 @@ class ContentFilterModule extends Module {
         {
             "type": "bool",
             "key": "enabled",
-            "value": "true",
+            "value": "false",
             "title": "Enable the Content Filter",
             "desc": "This module allows you to hide videos by channel and video title."
         },{

@@ -12,7 +12,7 @@ class HideViewCountModule extends Module {
         {
             "type": "bool",
             "key": "enabled",
-            "value": "true",
+            "value": "false",
             "title": "Enable HVC",
             "desc": "Hide all view counts globally across YouTube."
         },
