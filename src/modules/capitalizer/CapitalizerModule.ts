@@ -31,6 +31,17 @@ class CapitalizerModule extends Module {
             }
 
 
+            if (YouTubeDOM.getCurrentPage() == YouTubeDOM.PAGE_VIDEO) {
+
+                let header : WatchHeader = YouTubeDOM.getWatchHeader();
+
+                if (header != null) {
+                    header.setTitle(this.transform(header.getTitle()));
+                }
+
+            }
+
+
         });
 
     }
