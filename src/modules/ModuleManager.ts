@@ -4,6 +4,7 @@
 ///<reference path="contentfilter/ContentFilterModule.ts"/>
 ///<reference path="autoskip/AutoSkipModule.ts"/>
 ///<reference path="capitalizer/CapitalizerModule.ts"/>
+///<reference path="commentfilter/CommentFilterModule.ts"/>
 
 class ModuleManager {
 
@@ -14,6 +15,7 @@ class ModuleManager {
 
         this.modules.push(new HideViewCountModule());
         this.modules.push(new ContentFilterModule());
+        this.modules.push(new CommentFilterModule());
         this.modules.push(new AutoSkipModule());
         this.modules.push(new CapitalizerModule());
         this.modules.push(new TrumpFilterModule());

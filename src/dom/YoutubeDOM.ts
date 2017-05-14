@@ -5,6 +5,7 @@
 ///<reference path="../interface/video/HomePageEntry.ts"/>
 ///<reference path="../interface/video/FeedEntry.ts"/>
 ///<reference path="../interface/video/FeedEntryGrid.ts"/>
+///<reference path="../interface/CommentEntry.ts"/>
 abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
@@ -135,5 +136,15 @@ abstract class YouTubeDOM {
        return new WatchHeader(watch);
    }
 
+
+   public static getVisisbleComments() : CommentEntry[] {
+
+        let ret : CommentEntry[] = [];
+        let comments = document.getElementsByClassName("comment-renderer-content");
+        for (let i = 0; i < comments.length; i++) {
+            ret.push(new CommentEntry(<HTMLElement> comments[i]));
+        }
+        return ret;
+   }
 
 }
