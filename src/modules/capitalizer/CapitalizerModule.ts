@@ -12,7 +12,7 @@ class CapitalizerModule extends Module {
             "key": "enabled",
             "value": "false",
             "title": "Enable Capitalizer",
-            "desc": "Enable the transform. All titles will be fixed around YouTube."
+            "desc": "Titles like \"GONE WRONG\" will be transformed to \"Gone Wrong\"."
         }
     ];
 
