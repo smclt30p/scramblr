@@ -6,6 +6,7 @@
 ///<reference path="../interface/video/FeedEntry.ts"/>
 ///<reference path="../interface/video/FeedEntryGrid.ts"/>
 ///<reference path="../interface/CommentEntry.ts"/>
+///<reference path="../interface/FirstTimePopup.ts"/>
 abstract class YouTubeDOM {
 
     private static PAGE_VIDEO_PLAYING_TOKEN: string = "/watch";
@@ -39,6 +40,7 @@ abstract class YouTubeDOM {
         try {
 
             YouTubeDOM.injectMenuButton();
+            FirstTimePopup.getInstance().show();
 
         } catch (e) {
             throw e;
@@ -58,6 +60,7 @@ abstract class YouTubeDOM {
 
                 html.addEventListener("click", () => {
                     window.open(Browser.getCurrentBrowserAPI().getURIFromLocalFile("settings.html"));
+                    FirstTimePopup.getInstance().hide();
                 });
 
                 elements.insertBefore(html, elements.firstChild);

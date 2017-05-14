@@ -1,0 +1,46 @@
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .welcome-container {
+        width: 400px;
+        height: 240px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+        overflow: hidden;
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, 0);
+        top: 100px;
+        z-index: 100;
+        background: white;
+    }
+
+    .welcome-container h3 {
+        padding: 10px 10px 0 10px;
+        font-size: 18px;
+    }
+
+    .welcome-container img {
+        margin: 10px auto;
+        display: block;
+    }
+
+    .welcome-desc {
+        padding: 5px 10px 0 10px;
+    }
+
+    .welcome-goto {
+        font-size: 13px;
+        color: #888888;
+        padding: 10px 10px 10px 10px;
+    }
+</style>
+<div id="welcome-container-hider" class="welcome-container">
+    <h3>Welcome to Scramblr!</h3>
+    <p class="welcome-desc">Thanks for using Scramblr!</p>
+    <p class="welcome-goto">To start, check out the settings.</p>
+    <img id="welcome-img">
+</div>
