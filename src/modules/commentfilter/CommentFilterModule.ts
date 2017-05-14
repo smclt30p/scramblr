@@ -11,9 +11,16 @@ class CommentFilterModule extends Module {
         {
             "type": "bool",
             "key": "enabled",
-            "value": "true",
+            "value": "false",
             "title": "Enable the Comment Filter",
             "desc": "This module allows you to hide comments by commenter or comment contents."
+        },{
+            "type": "bool",
+            "key": "strict",
+            "value": "false",
+            "title": "Enable strict mode",
+            "desc": "Strict mode does an index search, the default behaviour is equality matching. This " +
+            "will filter comments more aggressively but may trigger false positives. (ex. \"ass\" in \"bass\")"
         },{
             "type": "str",
             "key": "bannedWords",
@@ -31,11 +38,13 @@ class CommentFilterModule extends Module {
 
     private bannedWords : string[];
     private bannedUsers : string[];
+    private strict : boolean;
 
     init(docmanager: DocumentManager, currentPage: number) {
 
         this.bannedWords = CommaParser.parse(this.readSettingsKey("bannedWords"));
         this.bannedUsers = CommaParser.parse(this.readSettingsKey("bannedUsers"));
+        this.strict = this.readSettingsKey("strict") == "true";
 
         Logger.info("Loaded comment filter: ");
 
@@ -98,8 +107,22 @@ class CommentFilterModule extends Module {
             if (comment.getCommentAuthor().toLowerCase() == this.bannedUsers[i].toLowerCase()) return true;
         }
 
-        for (let i = 0; i < this.bannedWords.length; i++) {
-            if (comment.getCommentText().toLowerCase().indexOf(this.bannedWords[i].toLowerCase()) != -1) return true;
+        if (this.strict) {
+
+            for (let i = 0; i < this.bannedWords.length; i++) {
+                if (comment.getCommentText().toLowerCase().indexOf(this.bannedWords[i].toLowerCase()) != -1) return true;
+            }
+
+        } else {
+
+            let words : string[] = comment.getCommentText().split(" ");
+
+            for (let i = 0; i < words.length; i++) {
+                for (let j = 0; j < this.bannedWords.length; j++) {
+                    if (words[i] == this.bannedWords[j]) return true;
+                }
+            }
+
         }
 
         return false;
