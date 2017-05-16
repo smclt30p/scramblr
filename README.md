@@ -60,6 +60,7 @@ Building steps:
 `make`
 4) Deploy the extension files inside the `build` directory:
 `make deploy`
+5) Use `Load unpacked extension` inside Chrome and point Chrome at the `build` directory.
 
 ## How to make new modules?
 
