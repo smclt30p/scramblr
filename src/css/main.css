@@ -45,9 +45,14 @@ html, body {
     cursor: pointer;
 }
 
-.options-item:hover, .options-item-selected {
+.options-item-deselected:hover {
     background: #b7b5b5;
     color: white;
+}
+
+.options-item-selected {
+    color: white;
+    background: #5c6166;
 }
 
 .module-container {

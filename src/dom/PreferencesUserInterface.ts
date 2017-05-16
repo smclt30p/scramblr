@@ -177,10 +177,10 @@ class PreferencesUserInterface {
         let hasAlready = style.indexOf("options-item-selected") != -1;
 
         if (!state) {
-            return style.replace("options-item-selected", "");
+            return style.replace("options-item-selected", "options-item-deselected");
         } else {
             if (hasAlready) return style;
-            return style + " options-item-selected";
+            return style.replace("options-item-deselected", "options-item-selected");
         }
 
     }
