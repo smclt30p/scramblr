@@ -2,15 +2,18 @@ abstract class QuerySelectorEntry implements VideoEntry {
 
 
     getTitle(): string {
-        return this.getRootElement().querySelector(this.getSelectors()["title"]).innerHTML;
+        let element = this.getRootElement().querySelector(this.getSelectors()["title"]);
+        return element == null ? null : element.innerHTML;
     }
 
     getViewCount(): string {
-        return this.getRootElement().querySelector(this.getSelectors()["viewcount"]).innerHTML;
+        let element = this.getRootElement().querySelector(this.getSelectors()["viewcount"]);
+        return element == null ? null : element.innerHTML;
     }
 
     getUploader(): string {
-        return this.getRootElement().querySelector(this.getSelectors()["uploader"]).innerHTML;
+        let element = this.getRootElement().querySelector(this.getSelectors()["uploader"]);
+        return element == null ? null : element.innerHTML;
     }
 
     setTitle(title: string): void {
