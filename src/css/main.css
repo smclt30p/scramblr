@@ -141,21 +141,14 @@ input[type=radio] {
 
 #donate-container code {
     padding: 5px;
-    display: block;
-    margin-top: 5px;
     border: 1px solid #d2d2d2;
     background: #f1f1f1;
-    width: 300px;
     font-family: monospace;
 }
 
 #donate-container p {
     font-size: 14px;
     color: #444444;
-}
-
-#donate-container img {
-    max-height: 80px;
 }
 
 #about-container img {
@@ -208,7 +201,7 @@ input[type=radio] {
 }
 
 #donate-container {
-    display: none;
+    /* display: none; */
 }
 
 #settings-container {
@@ -217,4 +210,20 @@ input[type=radio] {
 
 #about-container {
     display: none;
+}
+
+.donate-item-container {
+    display: flex;
+    margin: 10px 10px 10px 0;
+}
+
+.donate-item-container img {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+.bitcoin-qr > img {
+    width: 200px;
+    height: 200px;
 }
