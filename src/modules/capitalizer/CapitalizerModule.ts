@@ -36,7 +36,9 @@ class CapitalizerModule extends Module {
                 let header : WatchHeader = YouTubeDOM.getWatchHeader();
 
                 if (header != null) {
-                    header.setTitle(this.transform(header.getTitle()));
+                    let old = header.getTitle();
+                    if (old == null) return;
+                    header.setTitle(this.transform(old));
                 }
 
             }
