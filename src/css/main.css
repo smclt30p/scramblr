@@ -201,7 +201,7 @@ input[type=radio] {
 }
 
 #donate-container {
-    /* display: none; */
+    display: none;
 }
 
 #settings-container {
